@@ -14,6 +14,7 @@ import { uiActions } from "../store/ui-slice";
 import Cart from "./Cart/Cart";
 import NewMeal from "./Meals/NewMeal";
 import CheckoutList from "./Meals/CheckoutList";
+import { authActions } from "../store/auth-slice";
 
 const AppContent = () => {
   const { token, removeToken } = useToken();
@@ -24,7 +25,7 @@ const AppContent = () => {
   const isAddingNewMealPopup = useSelector((state) => state.ui.isAddingNewMealPopup);
   const isShownCheckoutList = useSelector((state) => state.ui.isShownCheckoutList);
   const user = useSelector((state) => state.auth.currentUser);
-  console.log(213);
+
   // Handler:
   const handleToggleCart = (bool) => () => {
     dispatch(uiActions.toggleCart(bool));
@@ -36,7 +37,6 @@ const AppContent = () => {
     dispatch(uiActions.toggleCheckoutList(bool));
   };
   const handleSignOut = async () => {
-    auth.signOut();
     removeToken();
   };
   //////////////////////////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ const AppContent = () => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         dispatch(fetchUserData(user));
-      }
+      } else dispatch(authActions.updateCurrentUser(null));
     });
     return () => {
       unsubscribe();

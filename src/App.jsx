@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import SignUp from "./components/auth/SignUp";
 import SignIn from "./components/auth/SignIn";
@@ -7,6 +8,9 @@ import ChangePassword from "./components/auth/ChangePassword";
 import NotFound from "./components/UI/NotFound";
 
 function App() {
+  useEffect(() => {
+    document.title = "Fast Foodz";
+  }, []);
   return (
     <Routes>
       <Route path="/signup" element={<SignUp />} />

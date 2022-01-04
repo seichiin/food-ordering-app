@@ -15,7 +15,7 @@ const Header = (props) => {
     <>
       <header className={classes.header}>
         <Link className={classes.link} to="/">
-          <h2 className={classes.logo}>Fast Food</h2>
+          <h2 className={classes.logo}>FastFoodz</h2>
         </Link>
         <nav className={classes["full-nav"]}>
           <HamburgerButton isToggle={isToggleHamburger} onToggleHamburger={handleToggleHamburger} />
