@@ -49,9 +49,7 @@ const Checkout = (props) => {
   return (
     <form className={classes.form} onSubmit={confirmHandler}>
       <div className={classes.controlGroup}>
-        <div
-          className={`${classes.control} ${nameHasError && classes.invalid}`}
-        >
+        <div className={`${classes.control} ${nameHasError && classes.invalid}`}>
           <label htmlFor="name">Receiver Name:</label>
           <input
             onChange={handleChangedValueName}
@@ -61,17 +59,13 @@ const Checkout = (props) => {
             id="name"
           />
         </div>
-        {nameHasError && (
-          <p className={classes.error}>Please enter a valid name!</p>
-        )}
+        {nameHasError && <p className={classes.error}>Please enter a valid name!</p>}
       </div>
 
       {/*  */}
 
       <div className={classes.controlGroup}>
-        <div
-          className={`${classes.control} ${phoneHasError && classes.invalid}`}
-        >
+        <div className={`${classes.control} ${phoneHasError && classes.invalid}`}>
           <label htmlFor="phone">Phone Number:</label>
           <input
             onChange={handleChangedValuePhone}
@@ -81,17 +75,13 @@ const Checkout = (props) => {
             id="phone"
           />
         </div>
-        {phoneHasError && (
-          <p className={classes.error}>Please enter a valid number!</p>
-        )}
+        {phoneHasError && <p className={classes.error}>Please enter a valid number!</p>}
       </div>
 
       {/*  */}
 
       <div className={classes.controlGroup}>
-        <div
-          className={`${classes.control} ${addressHasError && classes.invalid}`}
-        >
+        <div className={`${classes.control} ${addressHasError && classes.invalid}`}>
           <label htmlFor="postal">Address:</label>
           <input
             onChange={handleChangedValueAddress}
@@ -101,13 +91,11 @@ const Checkout = (props) => {
             id="postal"
           />
         </div>
-        {addressHasError && (
-          <p className={classes.error}>Please enter a valid address!</p>
-        )}
+        {addressHasError && <p className={classes.error}>Please enter a valid address!</p>}
       </div>
 
       <div className={classes.actions}>
-        <button type="button" onClick={props.onCancel}>
+        <button type="button" onClick={props.onCancel(false)}>
           Cancel
         </button>
         <button className={classes.submit} disabled={!formIsValid}>
