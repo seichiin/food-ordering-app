@@ -1,0 +1,83 @@
+.meal {
+    flex-basis: 45%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top: 1px solid #ccc;
+    gap: 2rem;
+}
+
+.meal input {
+    height: 1.5rem;
+    margin-bottom: 2px;
+}
+
+.meal input::placeholder {
+    text-align: center;
+    color: grey;
+}
+
+.meal h3 {
+    margin: 0 0 0.25rem 0;
+}
+
+.description {
+    width: 100%;
+    font-style: italic;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.price {
+    margin-top: 0.25rem;
+    font-weight: bold;
+    color: #ad5502;
+    font-size: 1.25rem;
+}
+
+.meal-image {
+    width: 11rem;
+    height: 11rem;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 1024px) {
+    .meal {
+        flex-basis: 86%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .meal {
+        flex-basis: 95%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .meal-image {
+        width: 8.5rem;
+        height: 8.5rem;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    .meal {
+        flex-basis: 100%;
+    }
+    .meal-image {
+        width: 7rem;
+        height: 7rem;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .adjust-input {
+        width: 8rem;
+    }
+}

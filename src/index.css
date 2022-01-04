@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+body {
+    /* background-color: #1f1d36; */
+    background-color: #070707;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+    /* for Chrome, Safari, and Opera */
+}
+
+@media screen and (max-width: 415px) {
+    html {
+        font-size: 93.75%;
+    }
+}

@@ -1,0 +1,23 @@
+.table-header {
+    display: flex;
+    justify-content: space-around;
+}
+
+.table-body {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+@media (max-width: 415px) {
+    .table-header {
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 320px) {
+    .table-header {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+}

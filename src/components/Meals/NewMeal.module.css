@@ -1,0 +1,58 @@
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title {
+    font-size: 2rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+.control-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.control-group input {
+    width: 60%;
+    height: 2rem;
+    font-size: 1rem;
+}
+
+.control-group .price {
+    width: 25%;
+    transform: translateX(-140%);
+}
+
+.actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+
+.actions button {
+    font-size: 1rem;
+    color: #fff;
+    background-color: #892a06;
+    width: 6rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+    text-align: center;
+}
+
+@media screen and (max-width: 415px) {
+    .control-group .price {
+        width: 60%;
+        transform: translateX(0);
+    }
+}

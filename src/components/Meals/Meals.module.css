@@ -1,0 +1,57 @@
+.meals {
+    max-width: 76rem;
+    width: 100%;
+    margin: 2rem auto;
+    /* animation: meals-appear 1s ease-out forwards; */
+}
+
+.meals ul {
+    display: block;
+    background-color: #fff;
+    list-style: none;
+    padding: 2rem 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* gap: 1; */
+    border-radius: 10px;
+}
+
+.empty {
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 700;
+    color: black;
+    text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+    .meals {
+        width: 80%;
+    }
+    .meals ul {
+        justify-content: space-around;
+        padding: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 415px) {
+    .meals {
+        width: 100%;
+    }
+    .meals ul {
+        padding: 0.5rem;
+    }
+}
+
+
+/* @keyframes meals-appear {
+    from {
+        opacity: 0;
+        transform: translateY(1rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} */

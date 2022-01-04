@@ -1,0 +1,70 @@
+/* HANBURGER BUTTON */
+
+.hamburger-button {
+    /* width: 2.813rem; */
+    width: 2.4rem;
+    height: 2.1rem;
+    position: relative;
+    margin: 5.125rem auto;
+    transform: rotate(0deg);
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+}
+
+.hamburger-button span {
+    display: block;
+    position: absolute;
+    height: 0.438rem;
+    width: 100%;
+    background: #678983;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: 0.25s ease-in-out;
+}
+
+.hamburger-button span:nth-child(1) {
+    top: 0;
+}
+
+.hamburger-button span:nth-child(2),
+.hamburger-button span:nth-child(3) {
+    /*14px*/
+    /* top: 0.875rem; */
+    top: 0.8rem;
+}
+
+.hamburger-button span:nth-child(4) {
+    /*28px*/
+    /* top: 1.75rem; */
+    top: 1.6rem;
+}
+
+.hamburger-button.open span:nth-child(1) {
+    /*18px*/
+    top: 1.125rem;
+    width: 0%;
+    left: 50%;
+}
+
+.hamburger-button.open span:nth-child(2) {
+    transform: rotate(45deg);
+}
+
+.hamburger-button.open span:nth-child(3) {
+    transform: rotate(-45deg);
+}
+
+.hamburger-button.open span:nth-child(4) {
+    /*18px*/
+    top: 1.125rem;
+    width: 0%;
+    left: 50%;
+}
+
+@media screen and (max-width: 768px) {
+    .hamburger-button {
+        display: block;
+    }
+}

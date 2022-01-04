@@ -1,0 +1,36 @@
+.form {
+    margin-top: 1rem;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+}
+
+.actions button {
+    width: 7rem;
+    font: inherit;
+    cursor: pointer;
+    background-color: #8a2b06;
+    border: 1px solid #8a2b06;
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.actions button {
+    margin-bottom: 0.3rem;
+}
+
+.actions button:hover,
+.actions button:active {
+    background-color: #641e03;
+    border-color: #641e03;
+}
+
+@media screen and (max-width: 600px) {
+    .actions button {
+        max-width: 7rem;
+    }
+}
