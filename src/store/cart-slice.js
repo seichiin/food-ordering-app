@@ -9,9 +9,7 @@ const cartSlice = createSlice({
     },
     reducers: {
         addItem(state, action) {
-            const existedItemIndex = state.items.findIndex(
-                (item) => item.id === action.payload.id
-            );
+            const existedItemIndex = state.items.findIndex((item) => item.id === action.payload.id);
             const existedItem = state.items[existedItemIndex];
 
             if (existedItem) {
@@ -29,18 +27,17 @@ const cartSlice = createSlice({
             state.totalQuantity++;
         },
         removeItem(state, action) {
-            const removedItemIndex = state.items.findIndex(
-                (item) => item.id === action.payload
-            );
+            const removedItemIndex = state.items.findIndex((item) => item.id === action.payload);
             const removedItem = state.items[removedItemIndex];
 
             if (removedItem.quantity <= 1) {
                 state.items.splice(removedItemIndex, 1);
             } else {
-                state.items[removedItemIndex].quantity--;
+                state.items[removedItemIndex].quantity -= 1;
             }
 
             state.totalAmount -= removedItem.price;
+            if (state.totalAmount - removedItem.price < 0) state.totalAmount = 0;
             state.totalQuantity--;
         },
         replaceFetchedCart(state, action) {

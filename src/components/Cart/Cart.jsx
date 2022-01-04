@@ -5,8 +5,8 @@ import classes from "./Cart.module.css";
 
 import { useSelector, useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
+import { putCheckoutData } from "../../store/checkout-actions";
 import Checkout from "./Checkout";
-import { putCheckoutData } from "../../store/cart-actions";
 
 const Cart = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);

@@ -1,9 +1,8 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { auth } from "./../others/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { fetchUserData } from "../store/auth-actions";
-import { authActions } from "../store/auth-slice";
 import { fetchMenuData, putMenuData } from "../store/menu-actions";
 import { fetchCartData, putCartData } from "../store/cart-actions";
 import useToken from "../hooks/use-token";
@@ -25,7 +24,7 @@ const AppContent = () => {
   const isAddingNewMealPopup = useSelector((state) => state.ui.isAddingNewMealPopup);
   const isShownCheckoutList = useSelector((state) => state.ui.isShownCheckoutList);
   const user = useSelector((state) => state.auth.currentUser);
-
+  console.log(213);
   // Handler:
   const handleToggleCart = (bool) => () => {
     dispatch(uiActions.toggleCart(bool));
@@ -45,11 +44,8 @@ const AppContent = () => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         dispatch(fetchUserData(user));
-      } else {
-        dispatch(authActions.updateCurrentUser(null));
       }
     });
-
     return () => {
       unsubscribe();
     };
@@ -67,17 +63,19 @@ const AppContent = () => {
 
   // Fetch and send cart data:
   useEffect(() => {
-    dispatch(fetchCartData());
-  }, [dispatch]);
+    if (!user) return;
+    dispatch(fetchCartData(user.uid));
+  }, [dispatch, user]);
   useEffect(() => {
+    if (!user) return;
     const putDataIndex = setTimeout(() => {
-      dispatch(putCartData(cart));
-    }, 700);
-
+      dispatch(putCartData(cart, user.uid));
+    }, 500);
     return () => {
       clearTimeout(putDataIndex);
     };
-  }, [dispatch, cart]);
+  }, [dispatch, cart, user]);
+
   return (
     <>
       {isShownCart && <Cart onHideCart={handleToggleCart} />}
@@ -102,4 +100,4 @@ const AppContent = () => {
   );
 };
 
-export default AppContent;
+export default React.memo(AppContent);

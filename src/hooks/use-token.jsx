@@ -3,10 +3,11 @@ import { authActions } from "./../store/auth-slice";
 import { useDispatch } from "react-redux";
 import jwt_decode from "jwt-decode";
 import { auth } from "./../others/firebase";
+import { cartActions } from "../store/cart-slice";
 
 const useToken = () => {
   const dispatch = useDispatch();
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   const addToken = async (token) => {
     localStorage.setItem("token", token);
@@ -21,7 +22,7 @@ const useToken = () => {
   useEffect(() => {
     let timeoutId;
 
-    setToken(localStorage.getItem("token"));
+    dispatch(cartActions.clearCart());
     if (token) {
       const decodedToken = jwt_decode(token);
       const remainingTime = decodedToken.exp * 1000 - new Date().getTime();
