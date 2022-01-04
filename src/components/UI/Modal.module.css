@@ -35,12 +35,18 @@
     }
 }
 
+@media screen and (max-width: 415px) {
+    .modal {
+        top: 12%;
+    }
+}
+
 @media screen and (max-width: 320px) {
     .modal {
         padding: 0.5rem 0;
         width: 95%;
+        top: 13%;
         left: 2.5%;
-        top: 18%;
     }
 }
 

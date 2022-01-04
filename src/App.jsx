@@ -9,7 +9,7 @@ import NotFound from "./components/UI/NotFound";
 
 function App() {
   useEffect(() => {
-    document.title = "Fast Foodz";
+    document.title = "FastFoodz";
   }, []);
   return (
     <Routes>
