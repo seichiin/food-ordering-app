@@ -26,12 +26,11 @@ const MealInputForm = ({
     event.preventDefault();
     const enteredAmount = amountInputRef.current.value;
     const quantityNumber = +enteredAmount;
-    if (!isLoggedIn) return;
-    if (
-      enteredAmount.length === 0 ||
-      quantityNumber < 1 ||
-      quantityNumber > 5
-    ) {
+    if (!isLoggedIn) {
+      alert("Please log in to process !");
+      return;
+    }
+    if (enteredAmount.length === 0 || quantityNumber < 1 || quantityNumber > 5) {
       setAmountIsValid(false);
       return;
     }
