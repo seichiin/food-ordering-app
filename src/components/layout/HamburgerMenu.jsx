@@ -44,21 +44,21 @@ const HamburgerMenu = ({
           </Link>
         )}
       </li>
-      {currentUser?.role.includes("user") && (
+      {isLoggedIn && currentUser?.role.includes("user") && (
         <li>
           <span className={classes.link} onClick={handleChangePassword}>
             Change Password
           </span>
         </li>
       )}
-      {currentUser?.role.includes("admin") && (
+      {isLoggedIn && currentUser?.role.includes("admin") && (
         <li>
           <span className={classes.link} onClick={handleToggleAddNewMeal(true)}>
             New meal
           </span>
         </li>
       )}
-      {currentUser?.role.includes("admin") && (
+      {isLoggedIn && currentUser?.role.includes("admin") && (
         <li>
           <span className={classes.link} onClick={handleToggleCheckoutList(true)}>
             Checkout List
