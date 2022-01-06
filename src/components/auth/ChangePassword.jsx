@@ -23,7 +23,8 @@ const ChangePassword = () => {
 
     try {
       await auth.currentUser.updatePassword(passwordRef.current.value);
-      handleCancel();
+      alert("Successfully changed password!");
+      handleCancel()();
     } catch (error) {
       if (error.code === 400 && error.message === "CREDENTIAL_TOO_OLD_LOGIN_AGAIN") {
         setError("Can't change password: Re-login to change password");
@@ -49,10 +50,10 @@ const ChangePassword = () => {
           {error && <p className={classes.error}>{error}</p>}
 
           <div className={classes.actions}>
-            <button>Change</button>
             <button type="button" onClick={handleCancel()}>
               Cancel
             </button>
+            <button>Change</button>
           </div>
         </form>
       </div>

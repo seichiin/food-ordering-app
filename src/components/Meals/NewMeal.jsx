@@ -42,7 +42,7 @@ const NewMeal = ({ onToggleAddMeal: handleToggleAddMeal }) => {
     } catch (error) {
       setError("Can't add new dish: " + error.message);
     }
-    handleToggleAddMeal(false);
+    handleToggleAddMeal(false)();
   };
 
   return (
@@ -69,10 +69,10 @@ const NewMeal = ({ onToggleAddMeal: handleToggleAddMeal }) => {
         {error && <p className={classes.error}>{error}</p>}
 
         <div className={classes.actions}>
-          <button>Add</button>
           <button type="button" onClick={handleToggleAddMeal(false)}>
             Cancel
           </button>
+          <button>Add</button>
         </div>
       </form>
     </Modal>

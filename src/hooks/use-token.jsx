@@ -16,7 +16,6 @@ const useToken = () => {
   };
   const removeToken = () => {
     localStorage.removeItem("token");
-    auth.signOut();
     setToken("");
   };
 
