@@ -6,11 +6,15 @@ const uiSlice = createSlice({
         isShownCart: false,
         isAddingNewMealPopup: false,
         isShownCheckoutList: false,
+        isShownHamburgerMenu: false,
     },
     reducers: {
         toggleCart(state, action) {
             Object.keys(state).forEach((ui) => (state[ui] = false));
             state.isShownCart = action.payload;
+        },
+        toggleHamburgerMenu(state) {
+            state.isShownHamburgerMenu = !state.isShownHamburgerMenu;
         },
         toggleAddNewMealPopup(state, action) {
             Object.keys(state).forEach((ui) => (state[ui] = false));

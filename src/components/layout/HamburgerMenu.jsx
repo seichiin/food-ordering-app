@@ -9,7 +9,6 @@ import { uiActions } from "../../store/ui-slice";
 const HamburgerMenu = ({
   onSignOut: handleSignOut,
   onToggleCart: handleToggleCart,
-  isToggleHamburger,
   onToggleAddMeal: handleToggleAddNewMeal,
   onToggleCheckoutList: handleToggleCheckoutList,
 }) => {
@@ -17,6 +16,7 @@ const HamburgerMenu = ({
   const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const currentUser = useSelector((state) => state.auth.currentUser);
+  const isShownHamburgerMenu = useSelector((state) => state.ui.isShownHamburgerMenu);
   const handleChangePassword = () => {
     dispatch(uiActions.disableAllState());
     navigate("/change-password");
@@ -25,7 +25,7 @@ const HamburgerMenu = ({
   return (
     <ul
       className={`${classes["hamburger-nav"]} ${
-        isToggleHamburger ? classes["hamburger-nav__open"] : classes["hamburger-nav__close"]
+        isShownHamburgerMenu ? classes["hamburger-nav__open"] : classes["hamburger-nav__close"]
       }`}
     >
       {isLoggedIn && currentUser && (

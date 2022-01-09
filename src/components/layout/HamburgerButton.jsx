@@ -1,16 +1,19 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { uiActions } from "../../store/ui-slice";
 import classes from "./HamburgerButton.module.css";
 
-const HamburgerButton = ({ isToggle, onToggleHamburger }) => {
-  // console.log(123);
-  const handleToggle = () => {
-    onToggleHamburger();
+const HamburgerButton = () => {
+  const dispatch = useDispatch();
+  const isShownHamburgerMenu = useSelector((state) => state.ui.isShownHamburgerMenu);
+  const handleToggleHamburgerMenu = () => {
+    dispatch(uiActions.toggleHamburgerMenu());
   };
 
   return (
     <div
-      className={`${classes["hamburger-button"]} ${isToggle && classes.open}`}
-      onClick={handleToggle}
+      className={`${classes["hamburger-button"]} ${isShownHamburgerMenu && classes.open}`}
+      onClick={handleToggleHamburgerMenu}
     >
       <span></span>
       <span></span>
