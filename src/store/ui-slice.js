@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const disableAllStates = (state) => {
+    Object.keys(state).forEach((ui) => (state[ui] = false));
+};
+
 const uiSlice = createSlice({
     name: "ui",
     initialState: {
@@ -16,16 +20,16 @@ const uiSlice = createSlice({
         toggleHamburgerMenu(state) {
             state.isShownHamburgerMenu = !state.isShownHamburgerMenu;
         },
+        disableAllState(state) {
+            disableAllStates(state);
+        },
         toggleAddNewMealPopup(state, action) {
-            Object.keys(state).forEach((ui) => (state[ui] = false));
+            disableAllStates(state);
             state.isAddingNewMealPopup = action.payload;
         },
         toggleCheckoutList(state, action) {
-            Object.keys(state).forEach((ui) => (state[ui] = false));
+            disableAllStates(state);
             state.isShownCheckoutList = action.payload;
-        },
-        disableAllState(state) {
-            Object.keys(state).forEach((ui) => (state[ui] = false));
         },
     },
 });

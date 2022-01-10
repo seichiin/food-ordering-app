@@ -63,9 +63,9 @@ const AppContent = () => {
 
   // Fetch and send cart data:
   useEffect(() => {
-    if (!user) return;
+    if (!user || !token) return;
     dispatch(fetchCartData(user.uid));
-  }, [dispatch, user]);
+  }, [dispatch, user, token]);
   useEffect(() => {
     if (!user) return;
     const putDataIndex = setTimeout(() => {
