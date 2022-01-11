@@ -1,18 +1,18 @@
 import classes from "./SignIn.module.css";
 import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "./../../others/firebase";
-import useToken from "./../../hooks/use-token";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/auth-slice";
 
 let setErrorId;
 
 const SignIn = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { addToken } = useToken();
 
   const handleSetError = (errorMsg) => {
     clearTimeout(setErrorId);
@@ -31,14 +31,10 @@ const SignIn = () => {
     try {
       setError("");
       setIsLoading(true);
-      const { user } = await auth.signInWithEmailAndPassword(
-        emailRef.current.value,
-        passwordRef.current.value
+      // await auth.signInWithEmailAndPassword(emailRef.current.value, passwordRef.current.value);
+      dispatch(
+        authActions.signIn({ email: emailRef.current.value, password: passwordRef.current.value })
       );
-      const token = await user.getIdToken();
-      addToken(token);
-
-      // alert("Successfully signed in!");
     } catch (error) {
       setIsLoading(false);
       if (error.code === 400 && error.message === "EMAIL_NOT_FOUND") {

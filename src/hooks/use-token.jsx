@@ -1,49 +1,39 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { authActions } from "./../store/auth-slice";
-import { useDispatch } from "react-redux";
-import jwt_decode from "jwt-decode";
+import { useDispatch, useSelector } from "react-redux";
 import { auth } from "./../others/firebase";
 import { cartActions } from "../store/cart-slice";
+import jwt_decode from "jwt-decode";
 
 const useToken = () => {
   const dispatch = useDispatch();
-  const [token, setToken] = useState(localStorage.getItem("token"));
-
-  const addToken = async (token) => {
-    localStorage.setItem("token", token);
-    dispatch(authActions.setIsLoggedIn(true));
-    setToken(token);
-  };
-  const removeToken = () => {
-    localStorage.removeItem("token");
-    setToken("");
-  };
+  const token = useSelector((state) => state.auth.token);
+  const signOut = useCallback(() => {
+    dispatch(authActions.signOut());
+    auth.signOut();
+  }, [dispatch]);
 
   useEffect(() => {
     let timeoutId;
-
     dispatch(cartActions.clearCart());
+
     if (token) {
       const decodedToken = jwt_decode(token);
       const remainingTime = decodedToken.exp * 1000 - new Date().getTime();
-
-      if (!remainingTime) {
-        removeToken();
-        dispatch(authActions.setIsLoggedIn(false));
-      }
+      if (!remainingTime) signOut();
 
       dispatch(authActions.setIsLoggedIn(true));
+
       timeoutId = setTimeout(() => {
-        removeToken();
-        auth.signOut();
+        signOut();
       }, remainingTime);
       return () => {
         clearTimeout(timeoutId);
       };
     } else dispatch(authActions.setIsLoggedIn(false));
-  }, [dispatch, token]);
+  }, [dispatch, token, signOut]);
 
-  return { token, addToken, removeToken };
+  return { token, signOut };
 };
 
 export default useToken;

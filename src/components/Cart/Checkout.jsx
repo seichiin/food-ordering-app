@@ -39,10 +39,19 @@ const Checkout = (props) => {
     phoneResetFunc();
     addressResetFunc();
 
+    const today = new Date();
+    const date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+    const time =
+      `${today.getHours()}` +
+      ":" +
+      `${+today.getMinutes() > 10 ? today.getMinutes() : `0${today.getMinutes()}`}`;
+    const dateTime = date + "/" + time;
+
     props.onConfirm({
       name: nameValue,
       phoneNumber: phoneValue,
       address: addressValue,
+      date: dateTime,
     });
   };
 

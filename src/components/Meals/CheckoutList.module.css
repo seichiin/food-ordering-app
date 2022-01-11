@@ -9,6 +9,11 @@
     flex-direction: column;
 }
 
+.text {
+    text-align: center;
+    padding: 1rem 2rem;
+}
+
 @media (max-width: 415px) {
     .table-header {
         justify-content: space-between;

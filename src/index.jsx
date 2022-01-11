@@ -1,7 +1,8 @@
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "./store/store";
+import { PersistGate } from "redux-persist/integration/react";
+import store, { persistor } from "./store/store";
 import ReactDOM from "react-dom";
 
 import { useEffect } from "react";
@@ -38,9 +39,11 @@ const AppContent = () => {
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <AppContent />
-    </BrowserRouter>
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
+    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );

@@ -5,6 +5,7 @@ export const fetchCheckoutData = () => async(dispatch) => {
     try {
         const req = await fetch(`${process.env.REACT_APP_FIREBASE_DATABASE_URL}/checkout.json`);
         const res = await req.json();
+        console.log(res);
         const adjustedRes = [];
         for (const [key, value] of Object.entries(res)) {
             const newObj = { id: key, ...value };

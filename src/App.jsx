@@ -17,7 +17,7 @@ import CheckoutList from "./components/Meals/CheckoutList";
 import { authActions } from "./store/auth-slice";
 
 const App = () => {
-  const { token, removeToken } = useToken();
+  const { token, signOut } = useToken();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const menu = useSelector((state) => state.menu.menu);
@@ -25,7 +25,6 @@ const App = () => {
   const isAddingNewMealPopup = useSelector((state) => state.ui.isAddingNewMealPopup);
   const isShownCheckoutList = useSelector((state) => state.ui.isShownCheckoutList);
   const user = useSelector((state) => state.auth.currentUser);
-
   // Handler:
   const handleToggleCart = (bool) => () => {
     dispatch(uiActions.toggleCart(bool));
@@ -36,8 +35,8 @@ const App = () => {
   const handleToggleCheckoutList = (bool) => () => {
     dispatch(uiActions.toggleCheckoutList(bool));
   };
-  const handleSignOut = async () => {
-    removeToken();
+  const handleSignOut = () => {
+    signOut();
   };
   //////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
@@ -67,14 +66,14 @@ const App = () => {
     dispatch(fetchCartData(user.uid));
   }, [dispatch, user, token]);
   useEffect(() => {
-    if (!user) return;
+    if (!user || !token) return;
     const putDataIndex = setTimeout(() => {
       dispatch(putCartData(cart, user.uid));
     }, 500);
     return () => {
       clearTimeout(putDataIndex);
     };
-  }, [dispatch, cart, user]);
+  }, [dispatch, cart, user, token]);
 
   return (
     <>

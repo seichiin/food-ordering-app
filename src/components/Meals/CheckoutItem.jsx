@@ -7,8 +7,9 @@ const CheckoutItem = ({ checkout, onDeleteCheckout: handleDeleteCheckout }) => {
       <div className={classes.column}>
         <span>Name: {checkout.user.name}</span>
         <span>COD: {checkout.COD}$</span>
-        <span>Phone Number: {checkout.user.phoneNumber}</span>
+        <span>Date: {checkout.user.date}</span>
         <span>Address: {checkout.user.address}</span>
+        <span>Phone Number: {checkout.user.phoneNumber}</span>
       </div>
       <div className={classes.column}>
         <span>Ordered Items:</span>
